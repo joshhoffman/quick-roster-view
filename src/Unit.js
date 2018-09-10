@@ -4,16 +4,19 @@ class Unit extends React.Component {
     constructor() {
         super();
 
-        this.clicked = this.clicked.bind(this);
+        this.addUnit = this.addUnit.bind(this);
     }
 
-    clicked() {
-        console.log("clicked");
+    addUnit() {
+        this.props.addHandler(this.props.unit);
     }
 
     render() {
         return (
-            <div onClick={this.clicked} key={this.props.unit.name}>{this.props.unit.name}</div>
+            <div key={this.props.unit.name}>
+                {this.props.unit.name} &nbsp;
+                <button onClick={this.addUnit}>Add</button>
+            </div>
         )
     }
 }

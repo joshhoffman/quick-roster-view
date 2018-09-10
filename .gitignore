@@ -23,3 +23,6 @@ yarn-error.log*
 
 src/index2.js
 package-lock.json
+
+# webstorm ignores
+/.idea

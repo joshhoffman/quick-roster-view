@@ -2,15 +2,27 @@ import React from 'react'
 import Unit from './Unit.js'
 
 class UnitList extends React.Component {
+    constructor() {
+        super();
+        this.addUnit = this.addUnit.bind(this);
+    }
+
+    addUnit(unit) {
+
+        this.props.addUnitHandler(unit);
+    }
+
     render() {
 
         const unitComponents = [];
 
         for (const unit of this.props.units) {
-            unitComponents.push(<Unit key={unit.name} unit={unit} />);
+            unitComponents.push(<Unit addHandler={this.addUnit} key={unit.name} unit={unit} />);
         }
 
-        return <ul>{unitComponents}</ul>
+        return (
+            <ul>{unitComponents}</ul>
+        )
     }
 }
 
