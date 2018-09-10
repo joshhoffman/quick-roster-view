@@ -1,6 +1,6 @@
 import React from 'react'
-import UnitList from './UnitList'
-import RosterDisplay from './list/RosterDisplay'
+import UnitList from './units/UnitList'
+import RosterDisplay from './roster/RosterDisplay'
 
 class App extends React.Component {
     constructor() {
