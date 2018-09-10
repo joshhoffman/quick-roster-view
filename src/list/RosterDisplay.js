@@ -1,7 +1,7 @@
 import React from 'react'
-import ListUnit from './ListUnit'
+import RosterUnit from './RosterUnit'
 
-class ListDisplay extends React.Component {
+class RosterDisplay extends React.Component {
     constructor() {
         super();
 
@@ -17,7 +17,7 @@ class ListDisplay extends React.Component {
         const unitComponents = [];
 
         for (const unit of this.props.units) {
-            unitComponents.push(<ListUnit removeHandler={this.removeUnit} key={unit.key} unit={unit} />);
+            unitComponents.push(<RosterUnit removeHandler={this.removeUnit} key={unit.key} unit={unit} />);
         }
 
         return (
@@ -26,4 +26,4 @@ class ListDisplay extends React.Component {
     }
 }
 
-export default ListDisplay
+export default RosterDisplay

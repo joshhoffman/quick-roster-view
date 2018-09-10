@@ -1,6 +1,6 @@
 import React from 'react'
 import UnitList from './UnitList'
-import ListDisplay from './list/ListDisplay'
+import RosterDisplay from './list/RosterDisplay'
 
 class App extends React.Component {
     constructor() {
@@ -42,7 +42,7 @@ class App extends React.Component {
                     <UnitList addUnitHandler={this.addUnitToList} units={this.state.units} />
                 </div>
                 <div className="col-md-6">
-                    <ListDisplay removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} />
+                    <RosterDisplay removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} />
                 </div>
             </div>
         )

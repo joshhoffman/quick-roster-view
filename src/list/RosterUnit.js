@@ -1,6 +1,6 @@
 import React from 'react'
 
-class ListUnit extends React.Component {
+class RosterUnit extends React.Component {
     constructor() {
         super();
 
@@ -21,4 +21,4 @@ class ListUnit extends React.Component {
     }
 }
 
-export default ListUnit
+export default RosterUnit
