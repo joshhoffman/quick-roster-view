@@ -6,14 +6,17 @@ class App extends React.Component {
     constructor() {
         super();
         this.units = [];
+        this.weapons = [];
         this.selectedUnits = [];
         this.state = {
             units: this.units,
+            weapons: this.weapons,
             selectedUnits: this.selectedUnits
         };
 
         this.addUnitToList = this.addUnitToList.bind(this);
         this.removeUnitFromList = this.removeUnitFromList.bind(this);
+        this.addWeaponToUnit = this.addWeaponToUnit.bind(this);
     }
 
     componentDidMount() {
@@ -21,10 +24,16 @@ class App extends React.Component {
             .then(response => response.json())
             .then(json => {this.setState({units: json})})
             .catch(error => console.log(error));
+
+        fetch("weapons.json")
+            .then(response => response.json())
+            .then(json => {this.setState({weapons: json})})
+            .catch(error => console.log(error));
     }
 
     addUnitToList(unit) {
-        unit.key = unit.name + String(Math.random());
+        unit.key = unit.id + String(Math.random());
+        unit.weaponSelections = [];
         this.selectedUnits.push(unit);
         this.setState({selectedUnits: this.selectedUnits})
     }
@@ -35,14 +44,24 @@ class App extends React.Component {
         this.setState({selectedUnits: this.selectedUnits})
     }
 
+    addWeaponToUnit(unit, weapon) {
+        const unitInList = this.selectedUnits.find(u => u.key === unit.key);
+        unitInList.weaponSelections.push(weapon);
+        this.setState({selectedUnits: this.selectedUnits})
+    }
+
     render() {
         return (
-            <div className="row">
-                <div className="col-md-6">
-                    <UnitList addUnitHandler={this.addUnitToList} units={this.state.units} />
+            <div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <UnitList addUnitHandler={this.addUnitToList} units={this.state.units} />
+                    </div>
+                    <div className="col-md-6">
+                        <RosterDisplay addWeaponHandler={this.addWeaponToUnit} removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} weapons={this.state.weapons} />
+                    </div>
                 </div>
-                <div className="col-md-6">
-                    <RosterDisplay removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} />
+                <div className="row">
                 </div>
             </div>
         )

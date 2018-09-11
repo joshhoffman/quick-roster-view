@@ -1,4 +1,14 @@
 [
-  {"name": "Intercessor"},
-  {"name": "Aggressor"}
+  {
+    "id": 1,
+    "name": "Intercessor",
+    "move": 8,
+    "weapons": [1, 2]
+  },
+  {
+    "id": 2,
+    "name": "Aggressor",
+    "move": 6,
+    "weapons": [3, 4]
+  }
 ]

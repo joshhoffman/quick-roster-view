@@ -17,7 +17,7 @@ class UnitList extends React.Component {
         const unitComponents = [];
 
         for (const unit of this.props.units) {
-            unitComponents.push(<Unit addHandler={this.addUnit} key={unit.name} unit={unit} />);
+            unitComponents.push(<Unit addHandler={this.addUnit} key={unit.id} unit={unit} />);
         }
 
         return (

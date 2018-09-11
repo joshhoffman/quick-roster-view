@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Bolter",
+        "type": "Rapid Fire",
+        "range": 30,
+        "attacks": 1
+    },
+    {
+        "id": 2,
+        "name": "Assault Bolter",
+        "type": "Assault",
+        "range": 24,
+        "attacks": 2
+    },
+    {
+        "id": 3,
+        "name": "Gatling",
+        "type": "Rapid Fire",
+        "range": 30,
+        "attacks": 6
+    },
+    {
+        "id": 4,
+        "name": "Flamer",
+        "type": "Assault",
+        "range": 10,
+        "attacks": 10
+    }
+]
