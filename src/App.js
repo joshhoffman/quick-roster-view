@@ -76,7 +76,7 @@ class App extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12">
+                    <div className="col-md-12" id="section-to-print">
                         <StatDisplay units={this.state.selectedUnits} weapons={this.state.weapons} />
                     </div>
                 </div>
