@@ -7,6 +7,7 @@ class RosterDisplay extends React.Component {
 
         this.removeUnit = this.removeUnit.bind(this);
         this.addWeaponToUnit = this.addWeaponToUnit.bind(this);
+        this.removeWeaponFromUnit = this.removeWeaponFromUnit.bind(this);
     }
 
     removeUnit(unit) {
@@ -15,6 +16,10 @@ class RosterDisplay extends React.Component {
 
     addWeaponToUnit(unit, weapon) {
         this.props.addWeaponHandler(unit, weapon);
+    }
+
+    removeWeaponFromUnit(unit, weapon) {
+        this.props.removeWeaponHandler(unit, weapon);
     }
 
     render() {
@@ -31,7 +36,7 @@ class RosterDisplay extends React.Component {
                 }
             }
 
-            unitComponents.push(<RosterUnit addWeaponHandler={this.addWeaponToUnit} addUnitHandler={this.addWeaponToUnit} weapons={weapons} removeHandler={this.removeUnit} key={unit.key} unit={unit} />);
+            unitComponents.push(<RosterUnit addWeaponHandler={this.addWeaponToUnit} removeWeaponHandler={this.removeWeaponFromUnit} addUnitHandler={this.addWeaponToUnit} weapons={weapons} removeHandler={this.removeUnit} key={unit.key} unit={unit} />);
         }
 
         return (

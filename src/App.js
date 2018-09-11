@@ -20,6 +20,7 @@ class App extends React.Component {
         this.addUnitToList = this.addUnitToList.bind(this);
         this.removeUnitFromList = this.removeUnitFromList.bind(this);
         this.addWeaponToUnit = this.addWeaponToUnit.bind(this);
+        this.removeWeaponFromUnit = this.removeWeaponFromUnit.bind(this);
     }
 
     componentDidMount() {
@@ -50,7 +51,16 @@ class App extends React.Component {
 
     addWeaponToUnit(unit, weapon) {
         const unitInList = this.selectedUnits.find(u => u.key === unit.key);
-        unitInList.weaponSelections.push(weapon);
+        const newWeapon = _.merge({}, weapon);
+        newWeapon.key = weapon.id + String(Math.random());
+        unitInList.weaponSelections.push(newWeapon);
+        this.setState({selectedUnits: this.selectedUnits})
+    }
+
+    removeWeaponFromUnit(unit, weapon) {
+        console.log("remove in app", unit, weapon);
+        const key = weapon.key;
+        unit.weaponSelections = unit.weaponSelections.filter(w => w.key !== key);
         this.setState({selectedUnits: this.selectedUnits})
     }
 
@@ -62,7 +72,7 @@ class App extends React.Component {
                         <UnitList addUnitHandler={this.addUnitToList} units={this.state.units} />
                     </div>
                     <div className="col-md-6">
-                        <RosterDisplay addWeaponHandler={this.addWeaponToUnit} removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} weapons={this.state.weapons} />
+                        <RosterDisplay addWeaponHandler={this.addWeaponToUnit} removeWeaponHandler={this.removeWeaponFromUnit} removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} weapons={this.state.weapons} />
                     </div>
                 </div>
                 <div className="row">
