@@ -1,5 +1,6 @@
 import React from 'react'
 import StatWeapon from './StatWeapon'
+import UnitStats from './UnitStats'
 
 class StatUnit extends React.Component {
     constructor() {
@@ -7,18 +8,13 @@ class StatUnit extends React.Component {
     }
 
     render() {
-        const weapons = [];
-
-        for (const weapon of this.props.unit.weaponSelections) {
-            weapons.push(<StatWeapon key={weapon.name + Math.random()} weapon={weapon} />)
-        }
+        const unit = this.props.unit;
 
         return (
-            <div key={this.props.unit.name}>
-                {this.props.unit.name} &nbsp;
-                <ul>
-                    {weapons}
-                </ul>
+            <div key={unit.name}>
+                <b>{unit.name}</b> &nbsp;
+                <UnitStats unit={unit}/>
+                <StatWeapon weapons={unit.weaponSelections}/>
             </div>
         )
     }

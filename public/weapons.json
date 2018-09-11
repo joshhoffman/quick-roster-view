@@ -1,30 +1,38 @@
 [
     {
         "id": 1,
-        "name": "Bolter",
-        "type": "Rapid Fire",
-        "range": 30,
-        "attacks": 1
+        "name": "Bolt Rifle",
+        "type": "Rapid Fire 1",
+        "range": "30\"",
+        "strength": "4",
+        "ap": "0",
+        "damage": "1"
     },
     {
         "id": 2,
-        "name": "Assault Bolter",
-        "type": "Assault",
-        "range": 24,
-        "attacks": 2
+        "name": "Auto Bolt Rifle",
+        "type": "Assault 2",
+        "range": "24\"",
+        "strength": "4",
+        "ap": "0",
+        "damage": "1"
     },
     {
         "id": 3,
         "name": "Gatling",
         "type": "Rapid Fire",
-        "range": 30,
-        "attacks": 6
+        "range": "24\"",
+        "strength": "4",
+        "ap": "0",
+        "damage": "1"
     },
     {
         "id": 4,
         "name": "Flamer",
         "type": "Assault",
-        "range": 10,
-        "attacks": 10
+        "range": "24\"",
+        "strength": "4",
+        "ap": "0",
+        "damage": "1"
     }
 ]

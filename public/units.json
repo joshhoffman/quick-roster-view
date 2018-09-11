@@ -2,13 +2,29 @@
   {
     "id": 1,
     "name": "Intercessor",
-    "move": 8,
+    "move": "6\"",
+    "weaponSkill": "3+",
+    "ballisticSkill": "3+",
+    "strength": "4",
+    "toughness": "4",
+    "wounds": "2",
+    "attacks": "2",
+    "leadership": "7",
+    "save": "3+",
     "weapons": [1, 2]
   },
   {
     "id": 2,
     "name": "Aggressor",
-    "move": 6,
+    "move": "5\"",
+    "weaponSkill": "3+",
+    "ballisticSkill": "3+",
+    "strength": "4",
+    "toughness": "5",
+    "wounds": "2",
+    "attacks": "2",
+    "leadership": "7",
+    "save": "3+",
     "weapons": [3, 4]
   }
 ]
