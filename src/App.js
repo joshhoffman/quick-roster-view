@@ -1,6 +1,8 @@
 import React from 'react'
 import UnitList from './units/UnitList'
 import RosterDisplay from './roster/RosterDisplay'
+import StatDisplay from './display/StatDisplay'
+import _ from 'lodash'
 
 class App extends React.Component {
     constructor() {
@@ -13,6 +15,7 @@ class App extends React.Component {
             weapons: this.weapons,
             selectedUnits: this.selectedUnits
         };
+
 
         this.addUnitToList = this.addUnitToList.bind(this);
         this.removeUnitFromList = this.removeUnitFromList.bind(this);
@@ -32,9 +35,10 @@ class App extends React.Component {
     }
 
     addUnitToList(unit) {
-        unit.key = unit.id + String(Math.random());
-        unit.weaponSelections = [];
-        this.selectedUnits.push(unit);
+        const newUnit = _.merge({}, unit);
+        newUnit.key = unit.id + String(Math.random());
+        newUnit.weaponSelections = [];
+        this.selectedUnits.push(newUnit);
         this.setState({selectedUnits: this.selectedUnits})
     }
 
@@ -62,6 +66,9 @@ class App extends React.Component {
                     </div>
                 </div>
                 <div className="row">
+                    <div className="col-md-12">
+                        <StatDisplay units={this.state.selectedUnits} weapons={this.state.weapons} />
+                    </div>
                 </div>
             </div>
         )
