@@ -1,0 +1,70 @@
+service: serverless-offline-plugins-service
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  environment:
+    TABLE_NAME:
+     ${self:resources.Resources.unitTable.Properties.TableName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+      Resource: "arn:aws:dynamodb:${opt:region,self:provider.region}:
+        *:table/${self:provider.environment.TABLE_NAME}"
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "*"
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+
+functions:
+  create:
+    handler: createUnits.handler
+    events:
+      - http:
+          path: /units
+          method: post
+          cors: true
+  get:
+    handler: getUnits.handler
+    events:
+      - http:
+          path: /units
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    unitTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: units-serverless-plugins
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: name
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

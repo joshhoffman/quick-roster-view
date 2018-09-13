@@ -24,7 +24,7 @@ class Builder extends React.Component {
     }
 
     componentDidMount() {
-        fetch("units.json")
+        fetch("http://localhost:3000/units")
             .then(response => response.json())
             .then(json => {this.setState({units: json})})
             .catch(error => console.log(error));

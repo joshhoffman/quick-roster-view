@@ -1,0 +1,19 @@
+{
+  "name": "quick-roster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless": "^1.31.0",
+    "serverless-dynamodb-client": "0.0.2",
+    "serverless-dynamodb-local": "^0.2.33"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.25.11"
+  }
+}
