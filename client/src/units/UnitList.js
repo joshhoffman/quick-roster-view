@@ -8,7 +8,6 @@ class UnitList extends React.Component {
     }
 
     addUnit(unit) {
-
         this.props.addUnitHandler(unit);
     }
 
