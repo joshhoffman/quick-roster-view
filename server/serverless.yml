@@ -13,6 +13,10 @@ provider:
       Action:
         - dynamodb:PutItem
         - dynamodb:GetItem
+        - dynamodb:Scan
+        - dynamodb:Query
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region,self:provider.region}:
         *:table/${self:provider.environment.TABLE_NAME}"
     - Effect: Allow
@@ -34,14 +38,14 @@ custom:
       migrate: true
 
 functions:
-  create:
+  createUnits:
     handler: createUnits.handler
     events:
       - http:
           path: /units
           method: post
           cors: true
-  get:
+  getUnits:
     handler: getUnits.handler
     events:
       - http:

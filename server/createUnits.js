@@ -18,6 +18,7 @@ module.exports.handler = function(event, context, callback) {
     console.log('Received event, writing to db:', JSON.stringify(event, null, 2));
 
     const data = JSON.parse(event.body);
+    // const data = event.body;
 
     console.log(data);
 

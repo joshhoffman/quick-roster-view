@@ -3,6 +3,7 @@ import AdminUnitList from "./admin/view/AdminUnitList";
 import AdminWeaponList from "./admin/view/AdminWeaponList";
 import CreateUnit from "./admin/create/CreateUnit";
 import CreateWeapon from "./admin/create/CreateWeapon";
+import config from './config';
 
 class Admin extends React.Component {
     constructor() {
@@ -12,10 +13,12 @@ class Admin extends React.Component {
             units: [],
             weapons: []
         };
+
+        this.createUnitHandler = this.createUnitHandler.bind(this);
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/units")
+        fetch(config.config.serverName + "/units")
             .then(response => response.json())
             .then(json => {this.setState({units: json})})
             .catch(error => console.log(error));
@@ -26,13 +29,24 @@ class Admin extends React.Component {
             .catch(error => console.log(error));
     }
 
+    createUnitHandler(newUnit) {
+        fetch(config.config.serverName + "/units", {
+            method: 'POST',
+            body: JSON.stringify(newUnit)
+        })
+            .then(s => fetch(config.config.serverName + "/units"))
+            .then(response => response.json())
+            .then(json => {this.setState({units: json})})
+            .catch(error => console.log(error));
+    }
+
     render() {
         return (
             <div>
                 <div className="row">
                     <div className="col-md-6">
                         <h4>Add unit</h4>
-                        <CreateUnit/>
+                        <CreateUnit createUnitHandler={this.createUnitHandler}/>
                     </div>
                     <div className="col-md-6">
                         <h4>Add weapon</h4>
