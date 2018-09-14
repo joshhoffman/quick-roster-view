@@ -1,6 +1,8 @@
 import React from 'react'
 import AdminUnitList from "./admin/view/AdminUnitList";
 import AdminWeaponList from "./admin/view/AdminWeaponList";
+import CreateUnit from "./admin/create/CreateUnit";
+import CreateWeapon from "./admin/create/CreateWeapon";
 
 class Admin extends React.Component {
     constructor() {
@@ -30,9 +32,11 @@ class Admin extends React.Component {
                 <div className="row">
                     <div className="col-md-6">
                         <h4>Add unit</h4>
+                        <CreateUnit/>
                     </div>
                     <div className="col-md-6">
                         <h4>Add weapon</h4>
+                        <CreateWeapon/>
                     </div>
                 </div>
                 <div className="row">
