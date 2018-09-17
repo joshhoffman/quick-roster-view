@@ -3,7 +3,7 @@
 const AWS = require("aws-sdk");
 const dynamodb = require('serverless-dynamodb-client');
 const docClient = dynamodb.doc;
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.UNIT_TABLE_NAME;
 
 const createResponse = (statusCode, body) => {
     return {
@@ -18,7 +18,6 @@ module.exports.handler = function(event, context, callback) {
     let params = {
         "TableName": tableName
     };
-
 
     docClient.scan(params, (err, data) => {
         let response;

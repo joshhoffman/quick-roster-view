@@ -6,19 +6,23 @@ provider:
   name: aws
   runtime: nodejs8.10
   environment:
-    TABLE_NAME:
+    UNIT_TABLE_NAME:
      ${self:resources.Resources.unitTable.Properties.TableName}
+    WEAPON_TABLE_NAME:
+      ${self:resources.Resources.weaponTable.Properties.TableName}
+    STAGE:
+      ${opt:stage, 'dev'}
   iamRoleStatements:
     - Effect: Allow
       Action:
         - dynamodb:PutItem
-        - dynamodb:GetItem
         - dynamodb:Scan
-        - dynamodb:Query
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:${opt:region,self:provider.region}:
-        *:table/${self:provider.environment.TABLE_NAME}"
+      Resource: "arn:aws:dynamodb:${opt:region,self:provider.region}:*:table/${self:provider.environment.UNIT_TABLE_NAME}"
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:Scan
+      Resource: "arn:aws:dynamodb:${opt:region,self:provider.region}:*:table/${self:provider.environment.WEAPON_TABLE_NAME}"
     - Effect: Allow
       Action:
         - logs:CreateLogGroup
@@ -42,23 +46,31 @@ functions:
     handler: createUnits.handler
     events:
       - http:
-          path: /units
+          path: units
           method: post
           cors: true
   getUnits:
     handler: getUnits.handler
     events:
       - http:
-          path: /units
+          path: units
           method: get
           cors: true
+  createWeapons:
+    handler: createWeapons.handler
+    runtime: python2.7
+    events:
+    - http:
+        path: weapons
+        method: post
+        cors: true
 
 resources:
   Resources:
     unitTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: units-serverless-plugins
+        TableName: units-${self:provider.environment.STAGE}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -69,6 +81,23 @@ resources:
             KeyType: HASH
           - AttributeName: name
             KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+    weaponTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: weapons-${self:provider.environment.STAGE}
+        AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: name
+          AttributeType: S
+        KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: name
+          KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5

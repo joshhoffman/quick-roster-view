@@ -15,6 +15,7 @@ class Admin extends React.Component {
         };
 
         this.createUnitHandler = this.createUnitHandler.bind(this);
+        this.createWeaponHandler = this.createWeaponHandler.bind(this);
     }
 
     componentDidMount() {
@@ -40,6 +41,18 @@ class Admin extends React.Component {
             .catch(error => console.log(error));
     }
 
+    createWeaponHandler(newWeapon) {
+        console.log(newWeapon);
+        fetch(config.config.serverName + "/weapons", {
+            method: 'POST',
+            body: JSON.stringify(newWeapon)
+        })
+            // .then(s => fetch(config.config.serverName + "/units"))
+            .then(response => response.json())
+            // .then(json => {this.setState({units: json})})
+            .catch(error => console.log(error));
+    }
+
     render() {
         return (
             <div>
@@ -50,7 +63,7 @@ class Admin extends React.Component {
                     </div>
                     <div className="col-md-6">
                         <h4>Add weapon</h4>
-                        <CreateWeapon/>
+                        <CreateWeapon createWeaponHandler={this.createWeaponHandler}/>
                     </div>
                 </div>
                 <div className="row">

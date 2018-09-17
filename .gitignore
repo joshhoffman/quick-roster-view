@@ -26,3 +26,4 @@ package-lock.json
 
 # webstorm ignores
 /.idea
+/server/.idea
