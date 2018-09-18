@@ -3,20 +3,12 @@
 const AWS = require("aws-sdk");
 const dynamodb = require('serverless-dynamodb-client');
 const docClient = dynamodb.doc;
+const createResponse = require('./utils/createResponse');
 const tableName = process.env.UNIT_TABLE_NAME;
-
-const createResponse = (statusCode, body) => {
-    return {
-        "statusCode": statusCode,
-        "body": body || "",
-        headers: {
-            "Access-Control-Allow-Origin" : "*"
-        }
-    }
-};
 
 module.exports.handler = function(event, context, callback) {
     console.log('Received event, reading from DB:', JSON.stringify(event, null, 2));
+    console.log(typeof createResponse);
 
     let params = {
         "TableName": tableName

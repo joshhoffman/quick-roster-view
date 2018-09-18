@@ -33,3 +33,4 @@ package-lock.json
 /server/src/go/bin
 /server/src/go/vendor
 /server/src/go/.idea
+/server/.serverless

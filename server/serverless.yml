@@ -32,9 +32,8 @@ provider:
 
 package:
   exclude:
-    - ./pkg/**
-    - ./src/go/vendor/**
-    - ./node_modules/**
+    - pkg/**
+    - src/go/vendor/**
 
 plugins:
   - serverless-dynamodb-local
@@ -49,14 +48,14 @@ custom:
 
 functions:
   createUnits:
-    handler: createUnits.handler
+    handler: node/createUnits.handler
     events:
       - http:
           path: units
           method: post
           cors: true
   getUnits:
-    handler: getUnits.handler
+    handler: node/getUnits.handler
     events:
       - http:
           path: units

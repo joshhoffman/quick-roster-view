@@ -11,12 +11,12 @@ import (
 )
 
 type Weapon struct {
-	Id string `json:"id""`
+	Id string `json:"id"`
 	Name string `json:"name"`
 	Type string `json:"type"`
 	Range string `json:"range"`
 	Strength string `json:"strength"`
-	Ap string `json"ap"`
+	Ap string `json:"ap"`
 	Damage string `json:"damage"`
 }
 
