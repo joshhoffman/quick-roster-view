@@ -8,7 +8,6 @@ const tableName = process.env.UNIT_TABLE_NAME;
 
 module.exports.handler = function(event, context, callback) {
     console.log('Received event, reading from DB:', JSON.stringify(event, null, 2));
-    console.log(typeof createResponse);
 
     let params = {
         "TableName": tableName

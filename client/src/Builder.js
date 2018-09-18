@@ -3,6 +3,7 @@ import UnitList from './units/UnitList'
 import RosterDisplay from './roster/RosterDisplay'
 import StatDisplay from './display/StatDisplay'
 import _ from 'lodash'
+import config from './config'
 
 class Builder extends React.Component {
     constructor() {
@@ -24,12 +25,12 @@ class Builder extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/units")
+        fetch(config.config.serverName + "/units")
             .then(response => response.json())
             .then(json => {this.setState({units: json})})
             .catch(error => console.log(error));
 
-        fetch("weapons.json")
+        fetch(config.config.serverName + "/weapons")
             .then(response => response.json())
             .then(json => {this.setState({weapons: json})})
             .catch(error => console.log(error));

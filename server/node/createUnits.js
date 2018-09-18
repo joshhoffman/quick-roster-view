@@ -1,5 +1,4 @@
 'use strict';
-console.log('Loading the create units function');
 
 const AWS = require("../aws-sdk");
 const dynamodb = require('../serverless-dynamodb-client');
@@ -13,8 +12,6 @@ module.exports.handler = function(event, context, callback) {
     console.log('Received event, writing to db:', JSON.stringify(event, null, 2));
 
     const data = JSON.parse(event.body);
-
-    console.log(data);
 
     let item = {
         "id": uuidv4(),
