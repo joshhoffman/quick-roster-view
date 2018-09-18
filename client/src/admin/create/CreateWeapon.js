@@ -1,8 +1,19 @@
 import React from 'react'
+import TextInputField from "./TextInputField";
 
 class CreateWeapon extends React.Component {
     constructor() {
         super();
+
+        this.properties = [
+            "Name",
+            "Type",
+            "Range",
+            "Strength",
+            "AP",
+            "Damage",
+            "Points"
+        ];
 
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -17,7 +28,8 @@ class CreateWeapon extends React.Component {
             range: data.get("range"),
             strength: data.get("strength"),
             ap: data.get("ap"),
-            damage: data.get("damage")
+            damage: data.get("damage"),
+            points: data.get("points")
         };
 
         console.log("submit", data.get("name"));
@@ -27,33 +39,16 @@ class CreateWeapon extends React.Component {
     }
 
     render() {
+        const fields = [];
+
+        for (const field of this.properties) {
+            fields.push(<TextInputField key={field} name={field}/>)
+        }
+
         return (
             <div>
                 <form onSubmit={this.onSubmit} id="weapon-form">
-                <div className="row">
-                    <div className="col-md-3">Name</div>
-                    <div className="col-md-4"><input type="text"/></div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">Type</div>
-                    <div className="col-md-4"><input type="text"/></div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">Range</div>
-                    <div className="col-md-4"><input type="text"/></div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">Strength</div>
-                    <div className="col-md-4"><input type="text"/></div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">Ap</div>
-                    <div className="col-md-4"><input type="text"/></div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">Damage</div>
-                    <div className="col-md-4"><input type="text"/></div>
-                </div>
+                    {fields}
 
                 <button>Submit</button>
                 </form>

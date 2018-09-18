@@ -10,8 +10,6 @@ class AdminUnitList extends React.Component {
 
         const unitComponents = [];
 
-        console.log(this.props.units);
-
         for (const unit of this.props.units) {
             unitComponents.push(<AdminUnit key={unit.id} unit={unit} />);
         }
