@@ -24,7 +24,7 @@ class Admin extends React.Component {
             .then(json => {this.setState({units: json})})
             .catch(error => console.log(error));
 
-        fetch("weapons.json")
+        fetch(config.config.serverName + "/weapons")
             .then(response => response.json())
             .then(json => {this.setState({weapons: json})})
             .catch(error => console.log(error));

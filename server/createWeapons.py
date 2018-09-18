@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-import time
 import uuid
 
 import boto3
@@ -19,7 +18,7 @@ def handler(event, context):
     table = dynamodb.Table(os.environ['WEAPON_TABLE_NAME'])
 
     item = {
-        'id': str(uuid.uuid1()),
+        'id': str(uuid.uuid4()),
         'name': data['name'],
         'type': data['type'],
         'range': data['range'],

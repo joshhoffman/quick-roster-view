@@ -20,6 +20,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+/client/node_modules
 
 src/index2.js
 package-lock.json
@@ -27,3 +28,8 @@ package-lock.json
 # webstorm ignores
 /.idea
 /server/.idea
+/server/pkg
+/server/node_modules
+/server/src/go/bin
+/server/src/go/vendor
+/server/src/go/.idea

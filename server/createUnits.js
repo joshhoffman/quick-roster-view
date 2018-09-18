@@ -10,7 +10,10 @@ const tableName = process.env.UNIT_TABLE_NAME;
 const createResponse = (statusCode, body) => {
     return {
         "statusCode": statusCode,
-        "body": body || ""
+        "body": body || "",
+        headers: {
+            "Access-Control-Allow-Origin" : "*"
+        }
     }
 };
 

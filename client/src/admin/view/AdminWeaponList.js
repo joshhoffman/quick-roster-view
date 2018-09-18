@@ -11,6 +11,7 @@ class AdminWeaponList extends React.Component {
         const weaponComponents = [];
 
         for (const weapon of this.props.weapons) {
+            console.log(weapon);
             weaponComponents.push(<AdminWeapon key={weapon.id} weapon={weapon} />);
         }
 

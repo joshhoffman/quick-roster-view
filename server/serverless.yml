@@ -30,6 +30,12 @@ provider:
         - logs:PutLogEvents
       Resource: "*"
 
+package:
+  exclude:
+    - ./pkg/**
+    - ./src/go/vendor/**
+    - ./node_modules/**
+
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
@@ -63,6 +69,19 @@ functions:
     - http:
         path: weapons
         method: post
+        cors: true
+  getWeapons:
+    handler: src/go/bin/getWeapons
+    runtime: go1.x
+    package:
+      exclude:
+        - ./**
+      include:
+        - ./src/go/bin/**
+    events:
+    - http:
+        path: weapons
+        method: get
         cors: true
 
 resources:
