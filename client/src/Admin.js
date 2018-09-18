@@ -11,11 +11,13 @@ class Admin extends React.Component {
 
         this.state = {
             units: [],
-            weapons: []
+            weapons: [],
+            unitWeapons: []
         };
 
         this.createUnitHandler = this.createUnitHandler.bind(this);
         this.createWeaponHandler = this.createWeaponHandler.bind(this);
+        this.addWeaponToUnit = this.addWeaponToUnit.bind(this);
     }
 
     componentDidMount() {
@@ -37,7 +39,7 @@ class Admin extends React.Component {
         })
             .then(s => fetch(config.config.serverName + "/units"))
             .then(response => response.json())
-            .then(json => {this.setState({units: json})})
+            .then(json => {this.setState({units: json, unitWeapons: []})})
             .catch(error => console.log(error));
     }
 
@@ -47,10 +49,16 @@ class Admin extends React.Component {
             method: 'POST',
             body: JSON.stringify(newWeapon)
         })
-            // .then(s => fetch(config.config.serverName + "/units"))
+            .then(s => fetch(config.config.serverName + "/units"))
             .then(response => response.json())
-            // .then(json => {this.setState({units: json})})
+            .then(json => {this.setState({units: json})})
             .catch(error => console.log(error));
+    }
+
+    addWeaponToUnit(weapon) {
+        console.log(weapon);
+        this.state.unitWeapons.push(weapon);
+        this.setState({unitWeapons: this.state.unitWeapons})
     }
 
     render() {
@@ -59,7 +67,7 @@ class Admin extends React.Component {
                 <div className="row">
                     <div className="col-md-6">
                         <h4>Add unit</h4>
-                        <CreateUnit createUnitHandler={this.createUnitHandler}/>
+                        <CreateUnit createUnitHandler={this.createUnitHandler} unitWeapons={this.state.unitWeapons}/>
                     </div>
                     <div className="col-md-6">
                         <h4>Add weapon</h4>
@@ -75,7 +83,7 @@ class Admin extends React.Component {
                     </div>
                     <div className="col-md-6">
                         <h4>Weapons</h4>
-                        <AdminWeaponList weapons={this.state.weapons}/>
+                        <AdminWeaponList addHandler={this.addWeaponToUnit} weapons={this.state.weapons}/>
                     </div>
                 </div>
             </div>

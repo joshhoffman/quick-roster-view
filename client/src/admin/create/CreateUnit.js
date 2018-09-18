@@ -38,7 +38,7 @@ class CreateUnit extends React.Component {
             leadership: data.get("leadership"),
             save: data.get("save"),
             points: data.get("points"),
-            weapons: [1, 2]
+            weapons: this.props.unitWeapons.map(x => x.id)
         };
 
         document.getElementById("unit-form").reset();
@@ -48,17 +48,26 @@ class CreateUnit extends React.Component {
 
     render() {
         const fields = [];
+        const weaponOptions = [];
 
         for (const field of this.properties) {
             fields.push(<TextInputField key={field} name={field}/>)
+        }
+
+        for (const option of this.props.unitWeapons) {
+            weaponOptions.push(<option key={option.id} value={option.id}>{option.name}</option>)
         }
 
         return (
             <div>
                 <form onSubmit={this.onSubmit} id="unit-form">
                     {fields}
-                Weapons<br />
-                <button>Submit</button>
+                    Weapons<br />
+                    <select name="weapons" multiple={true}>
+                        {weaponOptions}
+                    </select>
+                    <br />
+                    <button>Submit</button>
                 </form>
             </div>
         )

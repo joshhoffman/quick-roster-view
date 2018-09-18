@@ -3,7 +3,13 @@ import AdminWeapon from './AdminWeapon'
 
 class AdminWeaponList extends React.Component {
     constructor() {
-        super()
+        super();
+
+        this.addWeaponToUnit = this.addWeaponToUnit.bind(this);
+    }
+
+    addWeaponToUnit(weapon) {
+        this.props.addHandler(weapon);
     }
 
     render() {
@@ -11,7 +17,7 @@ class AdminWeaponList extends React.Component {
         const weaponComponents = [];
 
         for (const weapon of this.props.weapons) {
-            weaponComponents.push(<AdminWeapon key={weapon.id} weapon={weapon} />);
+            weaponComponents.push(<AdminWeapon key={weapon.id} weapon={weapon} addHandler={this.addWeaponToUnit} />);
         }
 
         return (
