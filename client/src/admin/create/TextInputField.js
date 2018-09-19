@@ -17,7 +17,7 @@ class TextInputField extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-4">{this.displayName}</div>
-                <div className="col-md-4"><input type="text" id="{this.name}" name="{this.name}" required/></div>
+                <div className="col-md-4"><input type="text" id={this.name} name={this.name} required/></div>
                 <div className="col-md-1">{this.props.buttonHandler ? <button onClick={this.buttonClicked}>Button!</button> : <div />}</div>
             </div>
         )

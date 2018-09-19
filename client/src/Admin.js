@@ -49,9 +49,9 @@ class Admin extends React.Component {
             method: 'POST',
             body: JSON.stringify(newWeapon)
         })
-            .then(s => fetch(config.config.serverName + "/units"))
+            .then(s => fetch(config.config.serverName + "/weapons"))
             .then(response => response.json())
-            .then(json => {this.setState({units: json})})
+            .then(json => {this.setState({weapons: json})})
             .catch(error => console.log(error));
     }
 
