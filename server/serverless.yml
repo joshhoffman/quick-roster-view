@@ -72,11 +72,6 @@ functions:
   getWeapons:
     handler: src/go/bin/getWeapons
     runtime: go1.x
-    package:
-      exclude:
-        - ./**
-      include:
-        - ./src/go/bin/**
     events:
     - http:
         path: weapons

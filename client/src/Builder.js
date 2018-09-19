@@ -59,7 +59,6 @@ class Builder extends React.Component {
     }
 
     removeWeaponFromUnit(unit, weapon) {
-        console.log("remove in app", unit, weapon);
         const key = weapon.key;
         unit.weaponSelections = unit.weaponSelections.filter(w => w.key !== key);
         this.setState({selectedUnits: this.selectedUnits})

@@ -1,6 +1,5 @@
 'use strict';
 
-const AWS = require("aws-sdk");
 const dynamodb = require('serverless-dynamodb-client');
 const docClient = dynamodb.doc;
 const createResponse = require('./utils/createResponse');

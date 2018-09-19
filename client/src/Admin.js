@@ -33,7 +33,7 @@ class Admin extends React.Component {
     }
 
     createUnitHandler(newUnit) {
-        fetch(config.config.serverName + "/units", {
+        return fetch(config.config.serverName + "/units", {
             method: 'POST',
             body: JSON.stringify(newUnit)
         })
@@ -44,8 +44,7 @@ class Admin extends React.Component {
     }
 
     createWeaponHandler(newWeapon) {
-        console.log(newWeapon);
-        fetch(config.config.serverName + "/weapons", {
+        return fetch(config.config.serverName + "/weapons", {
             method: 'POST',
             body: JSON.stringify(newWeapon)
         })

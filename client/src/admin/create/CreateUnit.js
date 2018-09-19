@@ -41,9 +41,9 @@ class CreateUnit extends React.Component {
             weapons: this.props.unitWeapons.map(x => x.id)
         };
 
-        document.getElementById("unit-form").reset();
 
-        this.props.createUnitHandler(newUnit);
+        this.props.createUnitHandler(newUnit)
+            .then(x => document.getElementById("unit-form").reset());
     }
 
     render() {

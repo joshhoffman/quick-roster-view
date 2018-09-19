@@ -32,7 +32,7 @@ class CreateWeapon extends React.Component {
             points: data.get("points")
         };
 
-        document.getElementById("unit-form").reset();
+        document.getElementById("weapon-form").reset();
 
         this.props.createWeaponHandler(newWeapon);
     }

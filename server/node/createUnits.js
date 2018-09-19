@@ -1,9 +1,8 @@
 'use strict';
 
-const AWS = require("../aws-sdk");
-const dynamodb = require('../serverless-dynamodb-client');
+const dynamodb = require('serverless-dynamodb-client');
 const docClient = dynamodb.doc;
-const uuidv4 = require('../uuid/v4');
+const uuidv4 = require('uuid/v4');
 const createResponse = require('./utils/createResponse');
 
 const tableName = process.env.UNIT_TABLE_NAME;
@@ -12,6 +11,7 @@ module.exports.handler = function(event, context, callback) {
     console.log('Received event, writing to db:', JSON.stringify(event, null, 2));
 
     const data = JSON.parse(event.body);
+    // const data = event;
 
     let item = {
         "id": uuidv4(),
@@ -25,7 +25,8 @@ module.exports.handler = function(event, context, callback) {
         "attacks": data.attacks,
         "leadership": data.leadership,
         "save": data.save,
-        "weapons": data.weapons
+        "weapons": data.weapons,
+        "points": data.points
     };
 
     let params = {

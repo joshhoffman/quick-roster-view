@@ -25,7 +25,7 @@ class WeaponSelector extends React.Component {
     }
 
     handleChange(event) {
-        this.selected = Number(event.target.value);
+        this.selected = event.target.value;
     }
 
     render() {
