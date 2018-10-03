@@ -9,10 +9,6 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-type Response struct {
-	Message string `json:"message"`
-}
-
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	weapons, err := dao.GetAllWeapons()
 

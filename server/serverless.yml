@@ -77,6 +77,18 @@ functions:
         path: weapons
         method: get
         cors: true
+  updateUnit:
+    handler: src/go/bin/updateUnit
+    runtime: go1.x
+    events:
+    - http:
+        path: units/{id}
+        method: put
+        cors: true
+        request:
+          parameters:
+            paths:
+              id: true
 
 resources:
   Resources:

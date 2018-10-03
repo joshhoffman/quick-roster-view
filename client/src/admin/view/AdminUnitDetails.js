@@ -42,7 +42,7 @@ class AdminUnitDetails extends React.Component {
 
         const data = new FormData(e.target);
 
-        const newUnit = {
+        const updatedUnit = {
             id: this.props.unit.id,
             name: this.props.unit.name,
             move: data.get("move"),
@@ -58,8 +58,7 @@ class AdminUnitDetails extends React.Component {
             weapons: this.props.unit.weapons
         };
 
-        console.log(newUnit);
-        this.props.updateUnitHandler()
+        this.props.updateUnitHandler(updatedUnit)
             .then(x => document.getElementById("edit-unit-form").reset())
     }
 

@@ -20,6 +20,15 @@ type Weapon struct {
 	Damage string `json:"damage"`
 }
 
+type Unit struct {
+	Id string `json:"id"`
+}
+
+func UpdateUnit(unit Unit) (Unit) {
+	ret := Unit {Id: "test"}
+	return ret
+}
+
 func GetAllWeapons() ([]Weapon, error) {
 	// build dynamo client
 	session := session.Must(session.NewSession())
