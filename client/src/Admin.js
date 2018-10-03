@@ -18,6 +18,7 @@ class Admin extends React.Component {
         this.createUnitHandler = this.createUnitHandler.bind(this);
         this.createWeaponHandler = this.createWeaponHandler.bind(this);
         this.addWeaponToUnit = this.addWeaponToUnit.bind(this);
+        this.updateUnitHandler = this.updateUnitHandler.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +37,17 @@ class Admin extends React.Component {
         return fetch(config.config.serverName + "/units", {
             method: 'POST',
             body: JSON.stringify(newUnit)
+        })
+            .then(s => fetch(config.config.serverName + "/units"))
+            .then(response => response.json())
+            .then(json => {this.setState({units: json, unitWeapons: []})})
+            .catch(error => console.log(error));
+    }
+
+    updateUnitHandler(updatedUnit) {
+        return fetch(config.config.serverName + "/units/" + updatedUnit.id, {
+            method: 'PUT',
+            body: JSON.stringify(updatedUnit)
         })
             .then(s => fetch(config.config.serverName + "/units"))
             .then(response => response.json())
@@ -77,7 +89,7 @@ class Admin extends React.Component {
                     <div className="col-md-6">
                         <h4>Units</h4>
                         <ul>
-                            <AdminUnitList units={this.state.units}/>
+                            <AdminUnitList updateUnitHandler={this.updateUnitHandler} units={this.state.units}/>
                         </ul>
                     </div>
                     <div className="col-md-6">

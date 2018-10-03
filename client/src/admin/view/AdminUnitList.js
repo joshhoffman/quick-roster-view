@@ -3,7 +3,13 @@ import AdminUnit from './AdminUnit'
 
 class AdminUnitList extends React.Component {
     constructor() {
-        super()
+        super();
+
+        this.updateUnitHandler = this.updateUnitHandler.bind(this);
+    }
+
+    updateUnitHandler(updatedUnit) {
+        return this.props.updateUnitHandler(updatedUnit);
     }
 
     render() {
@@ -11,7 +17,7 @@ class AdminUnitList extends React.Component {
         const unitComponents = [];
 
         for (const unit of this.props.units) {
-            unitComponents.push(<AdminUnit key={unit.id} unit={unit} />);
+            unitComponents.push(<AdminUnit updateUnitHandler={this.updateUnitHandler} key={unit.id} unit={unit} />);
         }
 
         return (
