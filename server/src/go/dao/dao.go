@@ -25,7 +25,7 @@ type Unit struct {
 }
 
 func UpdateUnit(unit Unit) (Unit) {
-	ret := Unit {Id: "test"}
+	ret := Unit {Id: "dao unit update"}
 	return ret
 }
 

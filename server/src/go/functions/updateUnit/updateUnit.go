@@ -1,4 +1,4 @@
-package updateUnit
+package main
 
 import (
 	"fmt"
@@ -10,11 +10,10 @@ import (
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	fmt.Println("Id: ", request.PathParameters["id"])
 
-	fmt.Println("Got body: " + request.Body);
+	fmt.Println("Got body: " + request.Body)
 
 	ret := dao.UpdateUnit(dao.Unit {Id: "fake"})
 
-	//fmt.Println("Updated item")
 	var headers map[string]string
 	headers = make(map[string]string)
 	headers["Access-Control-Allow-Origin"] = "*"
