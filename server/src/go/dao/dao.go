@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -11,28 +12,37 @@ import (
 )
 
 type Weapon struct {
-	Id string `json:"id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
-	Range string `json:"range"`
+	Id       string `json:"id"`
+	Name     string `json:"name"`
+	Type     string `json:"type"`
+	Range    string `json:"range"`
 	Strength string `json:"strength"`
-	Ap string `json:"ap"`
-	Damage string `json:"damage"`
+	Ap       string `json:"ap"`
+	Damage   string `json:"damage"`
 }
 
 type Unit struct {
 	Id string `json:"id"`
 }
 
-func UpdateUnit(unit Unit) (Unit) {
-	ret := Unit {Id: "dao unit update"}
-	return ret
+func GetSession() *dynamodb.DynamoDB {
+	session := session.Must(session.NewSession())
+	svc := dynamodb.New(session)
+	return svc
+}
+
+func UpdateUnit(body string) (Unit, error) {
+	// build dynamo client
+	//svc := GetSession()
+	var unit Unit
+	json.Unmarshal([]byte(body), &unit)
+
+	return unit, nil
 }
 
 func GetAllWeapons() ([]Weapon, error) {
 	// build dynamo client
-	session := session.Must(session.NewSession())
-	svc := dynamodb.New(session)
+	svc := GetSession()
 	weapons := []Weapon{}
 
 	params := &dynamodb.ScanInput{

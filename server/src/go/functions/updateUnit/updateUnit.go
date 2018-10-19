@@ -10,13 +10,18 @@ import (
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	fmt.Println("Id: ", request.PathParameters["id"])
 
-	fmt.Println("Got body: " + request.Body)
+	fmt.Println("Got body: ", request.Body)
 
-	ret := dao.UpdateUnit(dao.Unit {Id: "fake"})
+	ret, err := dao.UpdateUnit(request.Body)
+
+	if err != nil {
+		return events.APIGatewayProxyResponse{Body: "Error updating unit", StatusCode: 500}, nil
+	}
 
 	var headers map[string]string
 	headers = make(map[string]string)
 	headers["Access-Control-Allow-Origin"] = "*"
+	headers["Content-Type"] = "application/json"
 	return events.APIGatewayProxyResponse{Body: ret.Id, StatusCode: 200, Headers: headers}, nil
 }
 
