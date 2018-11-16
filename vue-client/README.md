@@ -1,5 +1,7 @@
 # vue-client
 
+Giving Vue a go! Rewriting the React UI in Vue.
+
 ## Project setup
 ```
 npm install

@@ -21,7 +21,10 @@
     import UnitList from "./builder/UnitList";
     export default {
         name: "Builder",
-        components: {UnitList}
+        components: {UnitList},
+        created: function() {
+            console.log("in builder created");
+        }
     }
 </script>
 

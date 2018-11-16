@@ -3,8 +3,8 @@
         <ul>
             <Unit
                     v-for="unit in units"
-                    v-bind:unit="unit"
-                    v-bind:key="unit.id"
+                    :unit="unit"
+                    :key="unit.id"
             ></Unit>
         </ul>
     </div>
