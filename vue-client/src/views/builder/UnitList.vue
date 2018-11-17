@@ -11,7 +11,9 @@
 </template>
 
 <script>
-    import Unit from '@/components/builder/Unit.vue'
+    import Unit from '@/components/builder/Unit.vue';
+    import {HTTP} from '@/http-common';
+
     export default {
         name: "UnitList",
         components: {
@@ -19,11 +21,15 @@
         },
         data: function() {
             return {
-                units: [
-                    {name: "test", id: 1},
-                    {name: "test2", id: 2}
-                ]
+                units: []
             }
+        },
+        mounted: function() {
+            HTTP.get("units")
+                .then(result => {
+                    console.log(result.data);
+                    this.units = result.data;
+                })
         }
     }
 </script>
