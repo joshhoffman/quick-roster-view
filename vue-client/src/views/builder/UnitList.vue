@@ -12,24 +12,12 @@
 
 <script>
     import Unit from '@/components/builder/Unit.vue';
-    import {HTTP} from '@/http-common';
 
     export default {
         name: "UnitList",
+        props: ["units"],
         components: {
             Unit
-        },
-        data: function() {
-            return {
-                units: []
-            }
-        },
-        mounted: function() {
-            HTTP.get("units")
-                .then(result => {
-                    console.log(result.data);
-                    this.units = result.data;
-                })
         }
     }
 </script>
