@@ -2,28 +2,30 @@
     <div>
         <div class="row">
             <div class="col-md-6">
-                <UnitList :units="units"></UnitList>
+                <UnitList :units="units"/>
             </div>
             <div class="col-md-6">
                 test
             <!--<RosterDisplay addWeaponHandler={this.addWeaponToUnit} removeWeaponHandler={this.removeWeaponFromUnit} removeUnitHandler={this.removeUnitFromList} units={this.state.selectedUnits} weapons={this.state.weapons} />-->
             </div>
         </div>
-        <!--<div className="row">-->
-            <!--<div class="col-md-12" id="section-to-print">-->
+        <div className="row">
+            <div class="col-md-12" id="section-to-print">
                 <!--<StatDisplay units={this.state.selectedUnits} weapons={this.state.weapons} />-->
-            <!--</div>-->
-        <!--</div>-->
+                <RosterList />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import UnitList from "./builder/UnitList";
+    import RosterList from "./builder/RosterList"
     import {HTTP} from '@/http-common';
 
     export default {
         name: "Builder",
-        components: {UnitList},
+        components: {RosterList, UnitList},
         data: function() {
             return {
                 units: [],
@@ -31,20 +33,24 @@
             }
         },
         created: function() {
-            console.log("in builder created");
+        },
+        methods: {
         },
         mounted: function() {
             HTTP.get("units")
                 .then(result => {
-                    console.log(result.data);
                     this.units = result.data;
                 });
 
             HTTP.get("weapons")
                 .then(result => {
-                    console.log(result.data);
                     this.weapons = result.data;
                 });
+        },
+        computed: {
+            roster: function() {
+                return this.$store.state.roster;
+            }
         }
     }
 </script>

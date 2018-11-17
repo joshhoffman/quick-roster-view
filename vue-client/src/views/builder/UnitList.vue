@@ -4,8 +4,8 @@
             <Unit
                     v-for="unit in units"
                     :unit="unit"
-                    :key="unit.id"
-            ></Unit>
+                    :key="unit.id">
+            </Unit>
         </ul>
     </div>
 </template>
@@ -16,6 +16,8 @@
     export default {
         name: "UnitList",
         props: ["units"],
+        methods: {
+        },
         components: {
             Unit
         }

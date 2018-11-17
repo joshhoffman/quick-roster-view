@@ -10,13 +10,15 @@
         props: ['unit'],
         methods: {
             addUnit: function() {
-                console.log("add unit", this.unit.name);
+                this.$store.commit("addUnit", this.unit);
             }
         },
         computed: {
             unitName: function() {
                 return this.unit.name;
             }
+        },
+        created: function() {
         }
     }
 </script>
