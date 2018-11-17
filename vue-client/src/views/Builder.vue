@@ -10,7 +10,6 @@
         </div>
         <div class="row">
             <div class="col-md-12" id="section-to-print">
-                <!--<StatDisplay units={this.state.selectedUnits} weapons={this.state.weapons} />-->
                 <RosterList />
             </div>
         </div>
@@ -57,5 +56,17 @@
 </script>
 
 <style scoped>
-
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #section-to-print, #section-to-print * {
+            visibility: visible;
+        }
+        #section-to-print {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
 </style>

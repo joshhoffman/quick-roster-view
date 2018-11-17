@@ -10,7 +10,6 @@
         props: ['unit', 'weapon'],
         methods: {
             onRemove: function() {
-                console.log(this.unit.assignedWeapons);
                 const _this = this;
                 this.unit.assignedWeapons = this._.filter(this.unit.assignedWeapons, function(o) { return o.key !== _this.weapon.key })
             }
