@@ -1,22 +1,24 @@
 <template>
     <div>
-        <RosterUnit
+        <WeaponOptionUnit
                 v-for="unit in roster"
                 :unit="unit"
-                :key="unit.rosterId">
-        </RosterUnit>
+        ></WeaponOptionUnit>
     </div>
 </template>
 
 <script>
-    import RosterUnit from '@/components/builder/RosterUnit'
+    import WeaponOptionUnit from '@/components/builder/WeaponOptionUnit'
 
     export default {
-        name: "RosterList",
-        components: {RosterUnit},
+        name: "WeaponOptionsList",
+        components: {WeaponOptionUnit},
         computed: {
             roster: function() {
                 return this.$store.state.roster;
+            },
+            weapons: function() {
+                return this.$store.state.weapons;
             }
         }
     }

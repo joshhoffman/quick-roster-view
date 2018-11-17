@@ -15,11 +15,15 @@
 
     export default {
         name: "UnitList",
-        props: ["units"],
         methods: {
         },
         components: {
             Unit
+        },
+        computed: {
+            units: function() {
+                return this.$store.state.units;
+            }
         }
     }
 </script>

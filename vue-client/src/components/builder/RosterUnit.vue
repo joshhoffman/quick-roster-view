@@ -1,6 +1,12 @@
 <template>
     <div>
         <span class="unitName">{{unitName}}</span>
+        <ul>
+            <li
+                    v-for="weapon in unit.assignedWeapons">
+                {{weapon.name}}
+            </li>
+        </ul>
     </div>
 </template>
 

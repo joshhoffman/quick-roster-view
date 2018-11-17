@@ -1,16 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import lodash from 'vue-lodash'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-      roster: []
+      roster: [],
+      units: [],
+      weapons: []
   },
   mutations: {
       addUnit(state, newUnit) {
-          state.roster.push(Vue._.merge({}, newUnit, {key: state.roster.length}));
+          state.roster.push(Vue._.merge({}, newUnit, {rosterId: state.roster.length, assignedWeapons: []}));
+      },
+      setUnits(state, units) {
+          state.units = units;
+      },
+      setWeapons(state, weapons) {
+          state.weapons = weapons;
       }
   },
   actions: {
