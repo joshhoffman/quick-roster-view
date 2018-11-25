@@ -4,7 +4,9 @@
       <router-link to="/">Builder</router-link>
       <router-link to="/admin">Admin</router-link>
     </div>
+    <div>
       <router-view />
+    </div>
   </div>
 </template>
 
@@ -20,9 +22,9 @@
   text-align: center;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #42b983;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #2c3e50;
     }
   }
 }
