@@ -24,7 +24,16 @@
         },
         computed: {
             weapons: function() {
-                return this.$store.state.weapons;
+                const weapons = [];
+
+                for (const weapon of this.$store.state.weapons) {
+                    const found = this.unit.weapons.find(w => weapon.id === w);
+                    if (found) {
+                        weapons.push(weapon);
+                    }
+                }
+
+                return weapons;
             }
         },
         methods: {
